@@ -114,7 +114,7 @@ const refreshUserToken = async (req: Request, res: Response) => {
         const id = await verifyToken(refreshToken);
         const payload = { _id: id };
         const accessToken = await jwt.sign(payload, refreshSecret, {
-            expiresIn: "14m",
+            expiresIn:  5 * 60 * 1000, //5min,
         });
         return res.status(200).send(success(200, "Access token created successfully", { accessToken }))
     } catch (err: any) {
